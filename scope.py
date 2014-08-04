@@ -68,8 +68,7 @@ def att_list(inp):
         n = inp.read(4)
         if n != b'\x00\x00\x00\x00':
             raise FormatError("expected ABSENT for att_list, but found {!r}".format(n))
-        p['gatt_list'] = 'absent'
-        return
+        return 'absent'
     if attribute != b'\x00\x00\x00\x0c':
         raise FormatError("expected NC_ATTRIBUTE for att_list, but found {!r}".format(attribute))
     n = nelems(inp)
