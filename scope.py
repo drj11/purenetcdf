@@ -47,7 +47,7 @@ def dim_list(p, inp):
         n = inp.read(4)
         if n != b'\x00\x00\x00\x00':
             raise FormatError("expected ABSENT for dim_list, but found {!r}".format(n))
-        p['dim_list'] = 'absent'
+        p['dim_list'] = None
         return
     if dimension != b'\x00\x00\x00\x0a':
         raise FormatError("expected NC_DIMENSON for dim_list, but found {!r}".format(dimension))
@@ -68,7 +68,7 @@ def att_list(inp):
         n = inp.read(4)
         if n != b'\x00\x00\x00\x00':
             raise FormatError("expected ABSENT for att_list, but found {!r}".format(n))
-        return 'absent'
+        return None
     if attribute != b'\x00\x00\x00\x0c':
         raise FormatError("expected NC_ATTRIBUTE for att_list, but found {!r}".format(attribute))
     n = nelems(inp)
@@ -88,7 +88,7 @@ def var_list(p,inp):
         n = inp.read(4)
         if n != b'\x00\x00\x00\x00':
             raise FormatError("expected ABSENT for var_list, but found {!r}".format(n))
-        p['var_list'] = 'absent'
+        p['var_list'] = None
         return
     if b != b'\x00\x00\x00\x0b':
         raise FormatError("expected NC_VARIABLE for var_list, but found {!r}".format(attribute))
